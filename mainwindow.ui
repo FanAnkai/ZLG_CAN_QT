@@ -10,6 +10,12 @@
     <height>687</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Consolas</family>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>车体外观_嵌入式CAN陪测软件_V1.3</string>
   </property>
@@ -131,6 +137,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="font">
+    <font>
+     <family>Consolas</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_4">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,1">
@@ -138,6 +150,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>设备类型：</string>
           </property>
@@ -145,6 +163,15 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
         </item>
         <item>
          <widget class="QComboBox" name="comboBox">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
           <item>
            <property name="text">
             <string>USBCAN2</string>
@@ -159,6 +186,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
         </item>
         <item>
          <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>设备索引号：</string>
           </property>
@@ -166,6 +199,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
         </item>
         <item>
          <widget class="QLineEdit" name="lineEdit">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>0</string>
           </property>
@@ -173,6 +212,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
         </item>
         <item>
          <widget class="QLabel" name="label_3">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>设备通道号：</string>
           </property>
@@ -180,6 +225,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
         </item>
         <item>
          <widget class="QComboBox" name="comboBox_2">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <item>
            <property name="text">
             <string>通道0</string>
@@ -199,6 +250,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
         </item>
         <item>
          <widget class="QCheckBox" name="checkBox">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>canID自增</string>
           </property>
@@ -206,6 +263,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
         </item>
         <item>
          <widget class="QPushButton" name="pushButton">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>连接CAN</string>
           </property>
@@ -213,6 +276,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_2">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>关闭CAN</string>
           </property>
@@ -220,6 +289,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
         </item>
         <item>
          <widget class="QLabel" name="label_7">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>未连接</string>
           </property>
@@ -229,6 +304,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
       </item>
       <item>
        <spacer name="horizontalSpacer_2">
+        <property name="font">
+         <font>
+          <family>Consolas</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -247,6 +328,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
       <property name="enabled">
        <bool>true</bool>
       </property>
+      <property name="font">
+       <font>
+        <family>Consolas</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -259,6 +346,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
            <widget class="QPushButton" name="pushButton_6">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>添加帧</string>
             </property>
@@ -266,6 +359,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_7">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>删除帧</string>
             </property>
@@ -273,6 +372,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_8">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>循环发送</string>
             </property>
@@ -280,6 +385,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_9">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>停止循环</string>
             </property>
@@ -287,6 +398,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_3">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>单次发送</string>
             </property>
@@ -294,13 +411,25 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_10">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>清空发送结果</string>
+             <string>清空发送</string>
             </property>
            </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_4">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -318,6 +447,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
          <layout class="QVBoxLayout" name="verticalLayout_9">
           <item>
            <widget class="QLabel" name="label_11">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>发送列表</string>
             </property>
@@ -325,6 +460,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QTableWidget" name="tableWidget_2">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <column>
              <property name="text">
               <string>报文类型</string>
@@ -378,6 +519,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <item>
            <widget class="QLabel" name="label_10">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>发送结果</string>
             </property>
@@ -385,6 +532,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_5">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>显示</string>
             </property>
@@ -392,6 +545,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <spacer name="horizontalSpacer_5">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -406,7 +565,14 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
          </layout>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
+         <widget class="QPlainTextEdit" name="plainTextEdit_2">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -421,6 +587,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
            <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,0,0,0,0,1">
             <item>
              <widget class="QCheckBox" name="checkBox_4">
+              <property name="font">
+               <font>
+                <family>Consolas</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
               <property name="text">
                <string>显示</string>
               </property>
@@ -428,6 +600,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
             </item>
             <item>
              <widget class="QLabel" name="label_9">
+              <property name="font">
+               <font>
+                <family>Consolas</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
               <property name="text">
                <string>筛选报文类型</string>
               </property>
@@ -435,6 +613,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
             </item>
             <item>
              <widget class="QComboBox" name="comboBox_3">
+              <property name="font">
+               <font>
+                <family>Consolas</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
               <item>
                <property name="text">
                 <string>信号采集板采集报文</string>
@@ -469,6 +653,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
             </item>
             <item>
              <widget class="QLabel" name="label_8">
+              <property name="font">
+               <font>
+                <family>Consolas</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
               <property name="text">
                <string>筛选源地址</string>
               </property>
@@ -476,6 +666,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
             </item>
             <item>
              <widget class="QComboBox" name="comboBox_4">
+              <property name="font">
+               <font>
+                <family>Consolas</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
               <item>
                <property name="text">
                 <string>1-主控板</string>
@@ -515,13 +711,25 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_11">
+              <property name="font">
+               <font>
+                <family>Consolas</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
               <property name="text">
-               <string>清空接收结果</string>
+               <string>清空接收</string>
               </property>
              </widget>
             </item>
             <item>
              <spacer name="horizontalSpacer_3">
+              <property name="font">
+               <font>
+                <family>Consolas</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -539,6 +747,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
         </item>
         <item>
          <widget class="QLabel" name="label_4">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>时间  报文类型  ID 数据  源地址-&gt;目的地址
 解析内容</string>
@@ -546,7 +760,14 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
          </widget>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="plainTextEdit"/>
+         <widget class="QPlainTextEdit" name="plainTextEdit">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -559,6 +780,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
          <layout class="QHBoxLayout" name="horizontalLayout_9">
           <item>
            <widget class="QPushButton" name="pushButton_12">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>添加帧</string>
             </property>
@@ -566,6 +793,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_13">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>删除帧</string>
             </property>
@@ -573,6 +806,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_14">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>开始循环</string>
             </property>
@@ -580,6 +819,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_15">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>停止循环</string>
             </property>
@@ -587,6 +832,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_4">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>单次发送</string>
             </property>
@@ -594,13 +845,25 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_16">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>清空发送结果</string>
+             <string>清空发送</string>
             </property>
            </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_7">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -618,6 +881,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
          <layout class="QVBoxLayout" name="verticalLayout_10">
           <item>
            <widget class="QLabel" name="label_13">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>发送列表</string>
             </property>
@@ -625,6 +894,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QTableWidget" name="tableWidget_3">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <column>
              <property name="text">
               <string>报文类型</string>
@@ -678,6 +953,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
          <layout class="QHBoxLayout" name="horizontalLayout_8">
           <item>
            <widget class="QLabel" name="label_12">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>发送结果</string>
             </property>
@@ -685,6 +966,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_6">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>显示</string>
             </property>
@@ -692,6 +979,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <spacer name="horizontalSpacer_6">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -706,7 +999,14 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
          </layout>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="plainTextEdit_3"/>
+         <widget class="QPlainTextEdit" name="plainTextEdit_3">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -719,6 +1019,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
          <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="0,0,0,0,0,0,1">
           <item>
            <widget class="QCheckBox" name="checkBox_7">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>显示</string>
             </property>
@@ -726,6 +1032,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QLabel" name="label_14">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>筛选报文类型</string>
             </property>
@@ -733,6 +1045,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QComboBox" name="comboBox_5">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <item>
              <property name="text">
               <string>信号采集板采集报文</string>
@@ -767,6 +1085,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QLabel" name="label_15">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>筛选源地址</string>
             </property>
@@ -774,6 +1098,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QComboBox" name="comboBox_6">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <item>
              <property name="text">
               <string>1-主控板</string>
@@ -813,13 +1143,25 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_17">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>清空接收结果</string>
+             <string>清空接收</string>
             </property>
            </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_8">
+            <property name="font">
+             <font>
+              <family>Consolas</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -835,6 +1177,12 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
         </item>
         <item>
          <widget class="QLabel" name="label_5">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>时间  报文类型  ID 数据  源地址-&gt;目的地址
 解析内容</string>
@@ -842,7 +1190,14 @@ radius:0.3, stop:0 #FF0000, stop:1 #FFFFFF);
          </widget>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="plainTextEdit_4"/>
+         <widget class="QPlainTextEdit" name="plainTextEdit_4">
+          <property name="font">
+           <font>
+            <family>Consolas</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

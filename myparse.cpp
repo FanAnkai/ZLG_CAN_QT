@@ -21,23 +21,33 @@ void MyParse::getCanDataSlot(PVCI_CAN_OBJ objs,int count)
     {
         int packetType = Mymethod::GetInstance()->getPacketType(objs[i].ID);
         int sourAddr = Mymethod::GetInstance()->getSourceAdres(objs[i].ID);
-        if((packetType != filterType)&&(filterType != ALL_PACKET))//过滤报文类型
-        {
-            //qDebug()<<"packetType:"<<packetType;
-            continue;
-        }
-        if((sourAddr != filterSourAddr)&&(filterSourAddr != ALL_ADDR))//过滤源地址
-        {
-            //qDebug()<<"sourAddr:"<<sourAddr;
-            continue;
-        }
-        //qDebug()<<"get a packet:"<<packetType;
+//        if((packetType != filterType)&&(filterType != ALL_PACKET))//过滤报文类型
+//        {
+//            //qDebug()<<"packetType:"<<packetType;
+//            continue;
+//        }
+//        if((sourAddr != filterSourAddr)&&(filterSourAddr != ALL_ADDR))//过滤源地址
+//        {
+//            //qDebug()<<"sourAddr:"<<sourAddr;
+//            continue;
+//        }
+
         PackeManager packet(packetType);
         packet.setPacket(objs[i]);
-        showInfo += packet.getMeaningStr(CAN_RCV)+"\n";
+        showInfo += packet.getMeaningStr(CAN_RCV);
+
+        QString str = "ID:" + QString("%1").arg(objs->ID) + " " + QString("%1").arg(objs->DataLen) + " Data:";
+        for(int j=0; j<objs->DataLen; j++)
+        {
+            str += QString("%1").arg(objs->Data[j]);
+            str += " ";
+        }
+
+        qDebug() << str << sourAddr;
     }
     if(showInfo!="")
     {
+        qDebug() << showInfo;
         emit showInfoSignal(showInfo.trimmed());
     }
 }

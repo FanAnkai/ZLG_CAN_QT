@@ -62,9 +62,12 @@ FORMS    += mainwindow.ui \
     testpacket.ui \
     infopacket.ui
 
-win32: LIBS += -L$$PWD/lib/ -lControlCAN
+
+
+CONFIG += c++11
+
+win32: LIBS += -L$$PWD/./ -lControlCAN
 
 INCLUDEPATH += $$PWD/.
 DEPENDPATH += $$PWD/.
 
-CONFIG += c++11

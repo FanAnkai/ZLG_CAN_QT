@@ -1,7 +1,7 @@
 #ifndef CONTROLCAN_H
 #define CONTROLCAN_H
 #include "windows.h"
-//�ӿڿ����Ͷ���
+//接口卡类型定义
 #define VCI_PCI5121		1
 #define VCI_PCI9810		2
 #define VCI_USBCAN1		3
@@ -36,25 +36,25 @@
 #define VCI_PCIe9140 29
 
 
-//CAN������
-#define	ERR_CAN_OVERFLOW			0x0001	//CAN�������ڲ�FIFO���
-#define	ERR_CAN_ERRALARM			0x0002	//CAN���������󱨾�
-#define	ERR_CAN_PASSIVE				0x0004	//CAN��������������
-#define	ERR_CAN_LOSE				0x0008	//CAN�������ٲö�ʧ
-#define	ERR_CAN_BUSERR				0x0010	//CAN���������ߴ���
-#define ERR_CAN_BUSOFF				0x0020 //���߹رմ���
-//ͨ�ô�����
-#define	ERR_DEVICEOPENED			0x0100	//�豸�Ѿ���
-#define	ERR_DEVICEOPEN				0x0200	//���豸����
-#define	ERR_DEVICENOTOPEN			0x0400	//�豸û�д�
-#define	ERR_BUFFEROVERFLOW			0x0800	//���������
-#define	ERR_DEVICENOTEXIST			0x1000	//���豸������
-#define	ERR_LOADKERNELDLL			0x2000	//װ�ض�̬��ʧ��
-#define ERR_CMDFAILED				0x4000	//ִ������ʧ�ܴ�����
-#define	ERR_BUFFERCREATE			0x8000	//�ڴ治��
+//CAN错误码
+#define	ERR_CAN_OVERFLOW			0x0001	//CAN控制器内部FIFO溢出
+#define	ERR_CAN_ERRALARM			0x0002	//CAN控制器错误报警
+#define	ERR_CAN_PASSIVE				0x0004	//CAN控制器消极错误
+#define	ERR_CAN_LOSE				0x0008	//CAN控制器仲裁丢失
+#define	ERR_CAN_BUSERR				0x0010	//CAN控制器总线错误
+#define ERR_CAN_BUSOFF				0x0020 //总线关闭错误
+//通用错误码
+#define	ERR_DEVICEOPENED			0x0100	//设备已经打开
+#define	ERR_DEVICEOPEN				0x0200	//打开设备错误
+#define	ERR_DEVICENOTOPEN			0x0400	//设备没有打开
+#define	ERR_BUFFEROVERFLOW			0x0800	//缓冲区溢出
+#define	ERR_DEVICENOTEXIST			0x1000	//此设备不存在
+#define	ERR_LOADKERNELDLL			0x2000	//装载动态库失败
+#define ERR_CMDFAILED				0x4000	//执行命令失败错误码
+#define	ERR_BUFFERCREATE			0x8000	//内存不足
 
 
-//�������÷���״ֵ̬
+//函数调用返回状态值
 #define	STATUS_OK					1
 #define STATUS_ERR					0
 
@@ -62,14 +62,14 @@
 #define CMD_DESPORT			1
 #define CMD_CHGDESIPANDPORT		2
 #define CMD_SRCPORT			2		
-#define CMD_TCP_TYPE		4					//tcp ������ʽ��������:1 ���ǿͻ���:0
+#define CMD_TCP_TYPE		4					//tcp 工作方式，服务器:1 或是客户端:0
 #define TCP_CLIENT			0
 #define TCP_SERVER			1
-//��������ʽ����Ч
-#define CMD_CLIENT_COUNT    5					//�����ϵĿͻ��˼���
-#define CMD_CLIENT			6					//�����ϵĿͻ���
-#define CMD_DISCONN_CLINET  7					//�Ͽ�һ������
-#define CMD_SET_RECONNECT_TIME 8			//ʹ���Զ�����
+//服务器方式下有效
+#define CMD_CLIENT_COUNT    5					//连接上的客户端计数
+#define CMD_CLIENT			6					//连接上的客户端
+#define CMD_DISCONN_CLINET  7					//断开一个连接
+#define CMD_SET_RECONNECT_TIME 8			//使能自动重连
 
 typedef struct tagRemoteClient{
 	int iIndex;
@@ -87,7 +87,7 @@ typedef struct _tagChgDesIPAndPort
 	BYTE blistenonly;
 }CHGDESIPANDPORT;
 
-//1.ZLGCANϵ�нӿڿ���Ϣ���������͡�
+//1.ZLGCAN系列接口卡信息的数据类型。
 typedef  struct  _VCI_BOARD_INFO{
 	USHORT	hw_Version;
 	USHORT	fw_Version;
@@ -100,20 +100,20 @@ typedef  struct  _VCI_BOARD_INFO{
 	USHORT	Reserved[4];
 } VCI_BOARD_INFO,*PVCI_BOARD_INFO; 
 
-//2.����CAN��Ϣ֡���������͡�
+//2.定义CAN信息帧的数据类型。
 typedef  struct  _VCI_CAN_OBJ{
 	UINT	ID;
 	UINT	TimeStamp;
 	BYTE	TimeFlag;
 	BYTE	SendType;
-	BYTE	RemoteFlag;//�Ƿ���Զ��֡
-	BYTE	ExternFlag;//�Ƿ�����չ֡
+	BYTE	RemoteFlag;//是否是远程帧
+	BYTE	ExternFlag;//是否是扩展帧
 	BYTE	DataLen;
 	BYTE	Data[8];
 	BYTE	Reserved[3];
 }VCI_CAN_OBJ,*PVCI_CAN_OBJ;
 
-//3.����CAN������״̬���������͡�
+//3.定义CAN控制器状态的数据类型。
 typedef struct _VCI_CAN_STATUS{
 	UCHAR	ErrInterrupt;
 	UCHAR	regMode;
@@ -126,14 +126,14 @@ typedef struct _VCI_CAN_STATUS{
 	DWORD	Reserved;
 }VCI_CAN_STATUS,*PVCI_CAN_STATUS;
 
-//4.���������Ϣ���������͡�
+//4.定义错误信息的数据类型。
 typedef struct _VCI_ERR_INFO{
 	UINT	ErrCode;
 	BYTE	Passive_ErrData[3];
 	BYTE	ArLost_ErrData;
 } VCI_ERR_INFO,*PVCI_ERR_INFO;
 
-//5.�����ʼ��CAN����������
+//5.定义初始化CAN的数据类型
 typedef struct _VCI_INIT_CONFIG{
 	DWORD	AccCode;
 	DWORD	AccMask;
@@ -147,17 +147,17 @@ typedef struct _VCI_INIT_CONFIG{
 
 ///////// new add struct for filter /////////
 typedef struct _VCI_FILTER_RECORD{
-	DWORD ExtFrame;	//�Ƿ�Ϊ��չ֡
+	DWORD ExtFrame;	//是否为扩展帧
 	DWORD Start;
 	DWORD End;
 }VCI_FILTER_RECORD,*PVCI_FILTER_RECORD;
 
-//��ʱ�Զ�����֡�ṹ
+//定时自动发送帧结构
 typedef struct _VCI_AUTO_SEND_OBJ{
-	BYTE Enable;//ʹ�ܱ�������.  0������   1��ʹ��
-	BYTE Index;  //���ı��.   ���֧��32������
-	DWORD Interval;//��ʱ����ʱ�䡣1msΪ��λ
-	VCI_CAN_OBJ obj;//����
+	BYTE Enable;//使能本条报文.  0：禁能   1：使能
+	BYTE Index;  //报文编号.   最大支持32条报文
+	DWORD Interval;//定时发送时间。1ms为单位
+	VCI_CAN_OBJ obj;//报文
 }VCI_AUTO_SEND_OBJ,*PVCI_AUTO_SEND_OBJ;
 
 #define EXTERNC		extern "C"

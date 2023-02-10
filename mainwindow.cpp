@@ -127,7 +127,7 @@ void MainWindow::on_pushButton_clicked()
         QMessageBox::warning(this,"失败","打开can失败");
         return;
     }
-    QPalette palette;palette.setColor(QPalette::WindowText,Qt::red);
+    QPalette palette;palette.setColor(QPalette::WindowText,Qt::green);
     ui->label_7->setPalette(palette);
     ui->label_7->setText("已连接");
 }
@@ -173,7 +173,7 @@ void MainWindow::on_pushButton_2_clicked()
  */
 void MainWindow::sendedInfoCAN1Slot(const QString &info)
 {
-    if(!ui->checkBox_5->isChecked())
+    if(ui->checkBox_5->isChecked())
     {
         return;
     }
@@ -190,7 +190,7 @@ void MainWindow::sendedInfoCAN1Slot(const QString &info)
  */
 void MainWindow::rcvedInfoCAN1Slot(const QString &info)
 {
-    if(!ui->checkBox_4->isChecked())
+    if(ui->checkBox_4->isChecked())
     {
         return;
     }
@@ -207,7 +207,7 @@ void MainWindow::rcvedInfoCAN1Slot(const QString &info)
  */
 void MainWindow::timerOutCAN1Slot()
 {
-    if(ui->checkBox_4->isChecked())//显示can1接收的数据
+    if(!ui->checkBox_4->isChecked())//显示can1接收的数据
     {
         if(rcvInfoCAN1.size()!=0)
         {
@@ -216,7 +216,7 @@ void MainWindow::timerOutCAN1Slot()
         }
     }
 
-    if(ui->checkBox_5->isChecked())//显示can1发送数据
+    if(!ui->checkBox_5->isChecked())//显示can1发送数据
     {
         if(sendInfoCAN1.size()!=0)
         {

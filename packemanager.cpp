@@ -20,6 +20,8 @@ PackeManager::PackeManager(int packetType)
 
 QString PackeManager::getMeaningStr(int way)
 {
+
+
     QString ret;
     if(CAN_SEND == way)//发送
     {
@@ -33,6 +35,7 @@ QString PackeManager::getMeaningStr(int way)
     }
     else if(CAN_RCV == way)//接收
     {
+
         QDateTime dt = QDateTime::currentDateTime();
         QString timeStr = dt.toString("yyyy.MM.dd ");
         int hour = obj.TimeStamp/36000000;
@@ -44,40 +47,38 @@ QString PackeManager::getMeaningStr(int way)
         canTimeStr += QString("%1.").arg(second,2,10,QChar('0'));
         canTimeStr += QString("%1").arg(ms,3,10,QChar('0'));
         timeStr += canTimeStr;
+
+
         QString idStr = QString("%1").arg(obj.ID,8,16,QLatin1Char('0'));
-        QByteArray dataBa;dataBa.resize(obj.DataLen);memcpy(dataBa.data(),obj.Data,obj.DataLen);
+        QByteArray dataBa;dataBa.resize(obj.DataLen);
+        memcpy(dataBa.data(),obj.Data,obj.DataLen);
         QString dataStr = dataBa.toHex().toUpper();
         Mymethod::GetInstance()->addSpaceInQString(dataStr);
-        //主控箱->广播
-        QString sourcStr,aimStr;
-        int sourAddr,aimAddr;
-        sourAddr = Mymethod::GetInstance()->getSourceAdres(obj.ID);
-        aimAddr = Mymethod::GetInstance()->getAimAdres(obj.ID);
-        if(sourAddr>=1 || sourcStr<=5)
+
+        ret += timeStr + "    ";
+
+        if(obj.ExternFlag)
         {
-            sourcStr = addrsVc[sourAddr-1];
-        }
-        else if(31==sourAddr)
-        {
-            sourcStr = addrsVc[5];
+            ret += "扩展帧    ";
         }
         else
         {
-            sourcStr = "未知地址";
+            ret += "标准帧    ";
         }
-        if((aimAddr>=1) && (aimAddr<=5))
+
+        if(obj.RemoteFlag)
         {
-            aimStr = addrsVc[aimAddr-1];
-        }
-        else if(31==aimAddr)
-        {
-            aimStr = addrsVc[5];
+            ret += "远程帧    ";
         }
         else
         {
-            aimStr = "未知地址";
+            ret += "数据帧    ";
         }
-        ret = packeetVc[packetType-1] + "    " + timeStr + "    " + idStr + "    " + dataStr + "    " + QString("%1->%2").arg(sourcStr).arg(aimStr)+ "\n" + getMeaningByType();
+
+
+
+        //ret = packeetVc[packetType-1] + "    " + timeStr + "    " + idStr + "    " + dataStr + "    " + QString("%1->%2").arg(sourcStr).arg(aimStr)+ "\n" + getMeaningByType();
+        ret += idStr + "    " + dataStr;
     }
     else
     {
