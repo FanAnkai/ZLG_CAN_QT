@@ -108,67 +108,10 @@ int Mymethod::addSpaceInQString(QString &str)
     {
         retStr += str.mid(i,2);
         retStr += " ";
-        i++;
+//        i++;
     }
     str = retStr;
     return ret;
 }
 
-/**
- *函数名:获取报文种类
- *函数参数:NULL
- *函数作用:NULL
- *函数返回值:NULL
- *备注:NULL
- */
-int Mymethod::getPacketType(const DWORD &id)
-{
-    int ret = 0;
-    ret = (id>>24)&0x1F;
 
-
-    return ret;
-}
-
-/***********************************************/
-// z 函数名称:根据can id获取源地址
-// h 函数作用:NULL
-// u 函数参数:NULL
-// x 函数返回值:NULL
-// y 备注:NULL
-/***********************************************/
-int Mymethod::getSourceAdres(const DWORD &id)
-{
-    int ret = 0;
-    ret = (id>>8)&0x1F;
-    return ret;
-
-}
-
-/***********************************************/
-// z 函数名称:根据canid获取目标地址
-// h 函数作用:NULL
-// u 函数参数:NULL
-// x 函数返回值:NULL
-// y 备注:NULL
-/***********************************************/
-int Mymethod::getAimAdres(const DWORD &id)
-{
-    int ret = 0;
-    ret = (id>>16)&0x1F;
-    return ret;
-}
-
-/**
- *函数名:根据canid获取心跳
- *函数参数:NULL
- *函数作用:NULL
- *函数返回值:NULL
- *备注:NULL
- */
-int Mymethod::getHeart(const DWORD &id)
-{
-    int ret = 0;
-    ret = (id>>0)&0xFF;
-    return ret;
-}

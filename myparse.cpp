@@ -16,11 +16,9 @@ void MyParse::getCanDataSlot(PVCI_CAN_OBJ objs,int count)
 {
     //发送给主界面显示
     QString showInfo;
-    //qDebug()<<"count:"<<count;
+
     for(int i=0;i<count;i++)
     {
-        int packetType = Mymethod::GetInstance()->getPacketType(objs[i].ID);
-        int sourAddr = Mymethod::GetInstance()->getSourceAdres(objs[i].ID);
 //        if((packetType != filterType)&&(filterType != ALL_PACKET))//过滤报文类型
 //        {
 //            //qDebug()<<"packetType:"<<packetType;
@@ -32,7 +30,7 @@ void MyParse::getCanDataSlot(PVCI_CAN_OBJ objs,int count)
 //            continue;
 //        }
 
-        PackeManager packet(packetType);
+        PackeManager packet(0);
         packet.setPacket(objs[i]);
         showInfo += packet.getMeaningStr(CAN_RCV);
 
@@ -42,8 +40,6 @@ void MyParse::getCanDataSlot(PVCI_CAN_OBJ objs,int count)
             str += QString("%1").arg(objs->Data[j]);
             str += " ";
         }
-
-        qDebug() << str << sourAddr;
     }
     if(showInfo!="")
     {

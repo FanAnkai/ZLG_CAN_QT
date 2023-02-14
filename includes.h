@@ -111,23 +111,19 @@ struct CAN_SEND_FRAME_STRUCT
 {
     CAN_SEND_FRAME_STRUCT()
     {
-        packetTyepStr = "";
+        can_ide = "";
+        can_rtr = "";
         idStr = "";
         dataStr = "";
-        sourceStr = "";
-        aimStr = "";
         timeStr = "";
-        meaningStr = "";
         isSendToSelf = false;
         sendCount = 0;
     }
-    QString packetTyepStr;
+    QString can_ide;
+    QString can_rtr;
     QString idStr;
     QString dataStr;
-    QString sourceStr;
-    QString aimStr;
     QString timeStr;
-    QString meaningStr;
     bool isSendToSelf;
     int sendCount;
 };

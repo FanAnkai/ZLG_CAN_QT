@@ -33,7 +33,6 @@ SOURCES += main.cpp\
     statepacket.cpp \
     packemanager.cpp \
     mytimer.cpp \
-    gatherpacket.cpp \
     controlpacket.cpp \
     testpacket.cpp \
     infopacket.cpp
@@ -49,17 +48,12 @@ HEADERS  += mainwindow.h \
     statepacket.h \
     packemanager.h \
     mytimer.h \
-    gatherpacket.h \
     controlpacket.h \
     testpacket.h \
     infopacket.h
 
 FORMS    += mainwindow.ui \
     makepacket.ui \
-    statepacket.ui \
-    gatherpacket.ui \
-    controlpacket.ui \
-    testpacket.ui \
     infopacket.ui
 
 

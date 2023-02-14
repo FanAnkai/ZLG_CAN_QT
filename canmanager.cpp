@@ -107,7 +107,7 @@ int CanManager::openCan(int deviceTye,int device,int chanel)
         break;
     }
 
-    ret = VCI_SetReference(deviceTye, device, 0, 0, buffer);
+    ret = VCI_SetReference(deviceTye, device, chanel, 0, buffer);
     if (ret != 1)
     {
         qDebug()<<"SetReference 失败";

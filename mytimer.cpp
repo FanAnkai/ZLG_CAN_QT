@@ -69,9 +69,9 @@ void MyTimer::run()
         {
             if(auto_add_id)//是否自增心跳
             {
-                tmpHeart = (unsigned char)Mymethod::GetInstance()->getHeart(obj.ID);
-                tmpHeart++;
-                obj.ID = (obj.ID & 0xFFFFFF00) | tmpHeart;
+//                tmpHeart = (unsigned char)Mymethod::GetInstance()->getHeart(obj.ID);
+//                tmpHeart++;
+//                obj.ID = (obj.ID & 0xFFFFFF00) | tmpHeart;
             }
             emit canSendSignal(this->obj);
             this->msleep(this->time);

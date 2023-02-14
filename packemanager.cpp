@@ -3,18 +3,6 @@
 PackeManager::PackeManager(int packetType)
 {
     this->packetType = packetType;
-    addrsVc.push_back("主控箱通信板");
-    addrsVc.push_back("公共信息板");
-    addrsVc.push_back("线阵控制板(沉箱)");
-    addrsVc.push_back("线阵控制板(侧箱)");
-    addrsVc.push_back("线阵控制板(车顶)");
-    addrsVc.push_back("广播");
-
-    packeetVc.push_back("信号采集板采集报文");
-    packeetVc.push_back("设备间主控箱控制报文");
-    packeetVc.push_back("采集模块状态报文");
-    packeetVc.push_back("轨旁控制箱状态检测报文");
-    packeetVc.push_back("板卡信息报文");
 
 }
 
@@ -76,8 +64,6 @@ QString PackeManager::getMeaningStr(int way)
         }
 
 
-
-        //ret = packeetVc[packetType-1] + "    " + timeStr + "    " + idStr + "    " + dataStr + "    " + QString("%1->%2").arg(sourcStr).arg(aimStr)+ "\n" + getMeaningByType();
         ret += idStr + "    " + dataStr;
     }
     else

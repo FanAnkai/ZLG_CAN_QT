@@ -22,8 +22,6 @@ private:
     QString getTestMeaning();
     QString getInfoMeaning();
 private:
-    std::vector<QString> addrsVc;
-    std::vector<QString> packeetVc;
     const QString space=" ";
     const QString nextLine="\n";
 };

@@ -5,7 +5,6 @@
 
 #include "includes.h"
 #include "mymethod.h"
-#include "gatherpacket.h"
 #include "controlpacket.h"
 #include "statepacket.h"
 #include "testpacket.h"
@@ -24,23 +23,19 @@ public:
     ~MakePacket();
 
 private slots:
-    void on_comboBox_currentIndexChanged(int index);
-
-    void on_pushButton_2_clicked();
 
     void on_pushButton_clicked();
 
 private:
     Ui::MakePacket *ui;
 
-    GatherPacket* gatherPacket;
     ControlPacket* controlPacket;
     StatePacket* stPacket;
     TestPacket* testPacket;
     InfoPacket* infoPacket;
 
-    const int packetNum = 5;
-    std::vector<QString> packetsName;
+    std::vector<QString> can_ide_type;
+    std::vector<QString> can_rtr_type;
 signals:
     void addSendFramSignal(const CAN_SEND_FRAME_STRUCT& info);
 };

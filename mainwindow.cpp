@@ -51,6 +51,7 @@ void MainWindow::init()
     ui->tableWidget_3->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_3->setSelectionBehavior(QAbstractItemView::SelectRows);//选中一行
     ui->tableWidget_3->horizontalHeader()->setStyleSheet("QHeaderView::section{background:skyblue;}"); //设置表头背景色
+
     //can1变量初始化
     QObject::connect(&timerCAN1,SIGNAL(timeout()),this,SLOT(timerOutCAN1Slot()));
     timerCAN1.setInterval(500);
@@ -65,6 +66,7 @@ void MainWindow::init()
     parseThreadCAN1.start();
     QObject::connect(&mkPacketCAN1,SIGNAL(addSendFramSignal(CAN_SEND_FRAME_STRUCT)),this,SLOT(addSendFramCAN1Slot(CAN_SEND_FRAME_STRUCT)));
     can1SingalSendTimer = NULL;
+
     /*can2*/
     QObject::connect(&timerCAN2,SIGNAL(timeout()),this,SLOT(timerOutCAN2Slot()));
     timerCAN2.setInterval(500);
@@ -79,6 +81,13 @@ void MainWindow::init()
     parseThreadCAN2.start();
     QObject::connect(&mkPacketCAN2,SIGNAL(addSendFramSignal(CAN_SEND_FRAME_STRUCT)),this,SLOT(addSendFramCAN2Slot(CAN_SEND_FRAME_STRUCT)));
     can2SingalSendTimer = NULL;
+
+
+    ui->tableWidget_2->setColumnWidth(3, 200);
+    ui->tableWidget_3->setColumnWidth(3, 200);
+
+    ui->tableWidget_2->setColumnWidth(6, 80);
+    ui->tableWidget_3->setColumnWidth(6, 80);
 }
 
 /**
@@ -141,12 +150,15 @@ void MainWindow::on_pushButton_clicked()
  */
 void MainWindow::on_pushButton_2_clicked()
 {
-    int deviceTye,device;
-    if(0==ui->comboBox->currentIndex())
+    int deviceTye = 0,device = 0;
+
+    int index = ui->comboBox->currentIndex();
+
+    if(index == 0)
     {
         deviceTye = 4;
     }
-    else if(1==ui->comboBox->currentIndex())
+    else if(index == 1)
     {
         deviceTye = 21;
     }
@@ -235,16 +247,16 @@ void MainWindow::timerOutCAN1Slot()
 /***********************************************/
 void MainWindow::addSendFramCAN1Slot(const CAN_SEND_FRAME_STRUCT &info)
 {
-#if CLOSE_IF
-    qDebug()<<"接收到需要发送的can帧";
-#endif
+    qDebug() << info.can_ide << info.can_rtr << info.idStr << info.dataStr << info.timeStr << info.sendCount;
+
     ui->tableWidget_2->insertRow(ui->tableWidget_2->rowCount());
-    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,0,new QTableWidgetItem(info.packetTyepStr));
-    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,1,new QTableWidgetItem(info.idStr));
-    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,2,new QTableWidgetItem(info.dataStr));
-    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,3,new QTableWidgetItem(info.sourceStr));
-    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,4,new QTableWidgetItem(info.aimStr));
-    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,5,new QTableWidgetItem(info.timeStr));
+    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,0,new QTableWidgetItem(info.can_ide));
+    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,1,new QTableWidgetItem(info.can_rtr));
+    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,2,new QTableWidgetItem(info.idStr));
+    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,3,new QTableWidgetItem(info.dataStr));
+    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,4,new QTableWidgetItem(info.timeStr));
+    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,5,new QTableWidgetItem(QString::number(info.sendCount)));
+
     if(info.isSendToSelf)
     {
         ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,6,new QTableWidgetItem(SEND_SELF));
@@ -253,8 +265,7 @@ void MainWindow::addSendFramCAN1Slot(const CAN_SEND_FRAME_STRUCT &info)
     {
         ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,6,new QTableWidgetItem(SEND_NORMAL));
     }
-    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,7,new QTableWidgetItem(QString::number(info.sendCount)));
-    ui->tableWidget_2->setItem(ui->tableWidget_2->rowCount()-1,8,new QTableWidgetItem(info.meaningStr));
+
     ui->tableWidget_2->resizeRowsToContents();
 }
 
@@ -359,14 +370,50 @@ void MainWindow::on_pushButton_3_clicked()
     std::vector<int> msleeps;
     for(int i=0;i<ui->tableWidget_2->rowCount();i++)//构造数据
     {
-        for(int j=0;j<(ui->tableWidget_2->item(i,7)->text().toInt());j++)
+        for(int j=0;j<(ui->tableWidget_2->item(i,5)->text().toInt());j++)
         {
             VCI_CAN_OBJ obj;
             memset(&obj,0,sizeof(obj));
+
+            //帧类型
+            QString str_ide = ui->tableWidget_2->item(i,0)->text();
+
+            if(str_ide.compare("标准帧") == 0)
+            {
+                obj.ExternFlag = CAN_FRAM_STANDARD;
+            }
+            else
+            {
+                obj.ExternFlag = CAN_FRAM_EXTERN;
+            }
+
+            //帧格式
+            QString str_rtr = ui->tableWidget_2->item(i,1)->text();
+
+            if(str_rtr.compare("数据帧") == 0)
+            {
+                obj.RemoteFlag = CAN_DATA_INFO;
+            }
+            else
+            {
+                obj.RemoteFlag = CAN_DATA_REMOTE;
+            }
+
             //ID
-            obj.ID = ui->tableWidget_2->item(i,1)->text().toUInt(nullptr,Z_HEX);
+            obj.ID = ui->tableWidget_2->item(i,2)->text().toUInt(nullptr,Z_HEX);
+
+
+
+            //数据长度
+            obj.DataLen = ui->tableWidget_2->item(i,3)->text().remove(QRegExp("\\s")).size()/2;
+            //数据
+            QByteArray ba;
+            QString tmpStr = ui->tableWidget_2->item(i,3)->text();
+            RET_IF_NOT_EAQU(Mymethod::GetInstance()->getBytesFromQString(tmpStr,ba),RET_OK);
+            memcpy(obj.Data,ba.data(),obj.DataLen);
+
             //发送类型
-            if(SEND_SELF == ui->tableWidget_2->item(i,6)->text())
+            if(SEND_SELF == ui->tableWidget_2->item(i,5)->text())
             {
                 obj.SendType = CAN_SEND_SELF;
             }
@@ -374,19 +421,13 @@ void MainWindow::on_pushButton_3_clicked()
             {
                 obj.SendType = CAN_SEND_NORMAL;
             }
-            //数据类型
-            obj.RemoteFlag = CAN_DATA_INFO;
-            //是否扩展帧
-            obj.ExternFlag = CAN_FRAM_EXTERN;
-            //数据长度
-            obj.DataLen = ui->tableWidget_2->item(i,2)->text().remove(QRegExp("\\s")).size()/2;
-            //数据
-            QByteArray ba;
-            QString tmpStr = ui->tableWidget_2->item(i,2)->text();
-            RET_IF_NOT_EAQU(Mymethod::GetInstance()->getBytesFromQString(tmpStr,ba),RET_OK);
-            memcpy(obj.Data,ba.data(),obj.DataLen);
+
+
+            qDebug() << obj.ExternFlag << obj.RemoteFlag << obj.ID;
+
+            //发送
             vcCan.push_back(obj);
-            msleeps.push_back(ui->tableWidget_2->item(i,5)->text().toInt());
+            msleeps.push_back(ui->tableWidget_2->item(i,4)->text().toInt());
         }
     }
     can1SingalSendTimer->setSingalSendData(vcCan,msleeps);
@@ -460,18 +501,6 @@ void MainWindow::on_comboBox_4_currentIndexChanged(int index)
 }
 
 /**
- *函数名:是否打开id自增
- *函数参数:NULL
- *函数作用:NULL
- *函数返回值:NULL
- *备注:NULL
- */
-void MainWindow::on_checkBox_clicked(bool checked)
-{
-    auto_add_id = checked;
-}
-
-/**
  *函数名:获取can2发送信息
  *函数参数:NULL
  *函数作用:NULL
@@ -480,7 +509,7 @@ void MainWindow::on_checkBox_clicked(bool checked)
  */
 void MainWindow::sendedInfoCAN2Slot(const QString &info)
 {
-    if(!ui->checkBox_6->isChecked())
+    if(ui->checkBox_6->isChecked())
     {
         return;
     }
@@ -497,7 +526,7 @@ void MainWindow::sendedInfoCAN2Slot(const QString &info)
  */
 void MainWindow::rcvedInfoCAN2Slot(const QString &info)
 {
-    if(!ui->checkBox_7->isChecked())
+    if(ui->checkBox_7->isChecked())
     {
         return;
     }
@@ -514,7 +543,7 @@ void MainWindow::rcvedInfoCAN2Slot(const QString &info)
  */
 void MainWindow::timerOutCAN2Slot()
 {
-    if(ui->checkBox_7->isChecked())//显示can1接收的数据
+    if(!ui->checkBox_7->isChecked())//显示can1接收的数据
     {
         if(rcvInfoCAN2.size()!=0)
         {
@@ -523,7 +552,7 @@ void MainWindow::timerOutCAN2Slot()
         }
     }
 
-    if(ui->checkBox_6->isChecked())//显示can1发送数据
+    if(!ui->checkBox_6->isChecked())//显示can1发送数据
     {
         if(sendInfoCAN2.size()!=0)
         {
@@ -542,16 +571,16 @@ void MainWindow::timerOutCAN2Slot()
 /***********************************************/
 void MainWindow::addSendFramCAN2Slot(const CAN_SEND_FRAME_STRUCT &info)
 {
-#if CLOSE_IF
-    qDebug()<<"接收到需要发送的can帧";
-#endif
+    qDebug() << info.can_ide << info.can_rtr << info.idStr << info.dataStr << info.timeStr << info.sendCount;
+
     ui->tableWidget_3->insertRow(ui->tableWidget_3->rowCount());
-    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,0,new QTableWidgetItem(info.packetTyepStr));
-    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,1,new QTableWidgetItem(info.idStr));
-    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,2,new QTableWidgetItem(info.dataStr));
-    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,3,new QTableWidgetItem(info.sourceStr));
-    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,4,new QTableWidgetItem(info.aimStr));
-    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,5,new QTableWidgetItem(info.timeStr));
+    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,0,new QTableWidgetItem(info.can_ide));
+    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,1,new QTableWidgetItem(info.can_rtr));
+    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,2,new QTableWidgetItem(info.idStr));
+    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,3,new QTableWidgetItem(info.dataStr));
+    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,4,new QTableWidgetItem(info.timeStr));
+    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,5,new QTableWidgetItem(QString::number(info.sendCount)));
+    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,6,new QTableWidgetItem(info.timeStr));
     if(info.isSendToSelf)
     {
         ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,6,new QTableWidgetItem(SEND_SELF));
@@ -560,8 +589,7 @@ void MainWindow::addSendFramCAN2Slot(const CAN_SEND_FRAME_STRUCT &info)
     {
         ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,6,new QTableWidgetItem(SEND_NORMAL));
     }
-    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,7,new QTableWidgetItem(QString::number(info.sendCount)));
-    ui->tableWidget_3->setItem(ui->tableWidget_3->rowCount()-1,8,new QTableWidgetItem(info.meaningStr));
+
     ui->tableWidget_3->resizeRowsToContents();
 }
 

@@ -8,7 +8,6 @@ release/makepacket.o
 release/statepacket.o
 release/packemanager.o
 release/mytimer.o
-release/gatherpacket.o
 release/controlpacket.o
 release/testpacket.o
 release/infopacket.o
@@ -18,7 +17,6 @@ release/moc_myparse.o
 release/moc_makepacket.o
 release/moc_statepacket.o
 release/moc_mytimer.o
-release/moc_gatherpacket.o
 release/moc_controlpacket.o
 release/moc_testpacket.o
 release/moc_infopacket.o
