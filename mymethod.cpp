@@ -104,11 +104,10 @@ int Mymethod::addSpaceInQString(QString &str)
 {
     int ret = RET_OK;
     QString retStr;
-    for(int i=0;i<str.size();i++)
+    for(int i=0;i<str.size();i+=2)
     {
         retStr += str.mid(i,2);
         retStr += " ";
-//        i++;
     }
     str = retStr;
     return ret;

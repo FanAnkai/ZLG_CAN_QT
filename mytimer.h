@@ -24,7 +24,7 @@ private://单次发送
     std::vector<int> msleeps;
 public:
     int setSingalSendData(const std::vector<VCI_CAN_OBJ>& vcCan,std::vector<int>& msleeps);
-private:
+
 };
-extern bool auto_add_id;
+
 #endif // MYTIMER_H

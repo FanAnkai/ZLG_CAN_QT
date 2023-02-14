@@ -43,7 +43,12 @@ public:
     {
         if (MakePacket->objectName().isEmpty())
             MakePacket->setObjectName(QString::fromUtf8("MakePacket"));
-        MakePacket->resize(451, 246);
+        MakePacket->resize(450, 250);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MakePacket->sizePolicy().hasHeightForWidth());
+        MakePacket->setSizePolicy(sizePolicy);
         MakePacket->setStyleSheet(QString::fromUtf8("/*QComboBox*/\n"
 "\n"
 "QComboBox {\n"
@@ -105,7 +110,7 @@ public:
 "}"));
         checkBox = new QCheckBox(MakePacket);
         checkBox->setObjectName(QString::fromUtf8("checkBox"));
-        checkBox->setGeometry(QRect(20, 190, 91, 22));
+        checkBox->setGeometry(QRect(20, 200, 91, 22));
         QFont font;
         font.setFamily(QString::fromUtf8("Consolas"));
         font.setPointSize(11);
@@ -158,7 +163,7 @@ public:
         can_RTR->setFont(font);
         pushButton_2 = new QPushButton(MakePacket);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(360, 190, 77, 22));
+        pushButton_2->setGeometry(QRect(360, 200, 77, 22));
         pushButton_2->setFont(font);
         label_2 = new QLabel(MakePacket);
         label_2->setObjectName(QString::fromUtf8("label_2"));
@@ -196,7 +201,7 @@ public:
         can_RTR->setItemText(0, QCoreApplication::translate("MakePacket", "0 \346\225\260\346\215\256\345\270\247", nullptr));
         can_RTR->setItemText(1, QCoreApplication::translate("MakePacket", "1 \350\277\234\347\250\213\345\270\247", nullptr));
 
-        pushButton_2->setText(QString());
+        pushButton_2->setText(QCoreApplication::translate("MakePacket", "\345\205\263\351\227\255", nullptr));
         label_2->setText(QCoreApplication::translate("MakePacket", " ID\357\274\2320x", nullptr));
         can_IDE->setItemText(0, QCoreApplication::translate("MakePacket", "0 \346\240\207\345\207\206\345\270\247", nullptr));
         can_IDE->setItemText(1, QCoreApplication::translate("MakePacket", "1 \346\211\251\345\261\225\345\270\247", nullptr));

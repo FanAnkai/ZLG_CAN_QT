@@ -1,6 +1,5 @@
 #include "mytimer.h"
 
-bool auto_add_id=false;
 
 MyTimer::MyTimer(bool isSendOneTime) :
     QThread()
@@ -62,17 +61,11 @@ void MyTimer::run()
     {
         if(this->time<=0)
         {
-            stop==false;
+            stop = false;
         }
-        unsigned char tmpHeart=0;
+
         while(!stop)
         {
-            if(auto_add_id)//是否自增心跳
-            {
-//                tmpHeart = (unsigned char)Mymethod::GetInstance()->getHeart(obj.ID);
-//                tmpHeart++;
-//                obj.ID = (obj.ID & 0xFFFFFF00) | tmpHeart;
-            }
             emit canSendSignal(this->obj);
             this->msleep(this->time);
         }

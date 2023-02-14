@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>451</width>
-    <height>246</height>
+    <width>450</width>
+    <height>250</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -77,7 +83,7 @@ background-color:#F5F5F5;
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>190</y>
+     <y>200</y>
      <width>91</width>
      <height>22</height>
     </rect>
@@ -317,7 +323,7 @@ background-color:#F5F5F5;
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>190</y>
+     <y>200</y>
      <width>77</width>
      <height>22</height>
     </rect>
@@ -329,7 +335,7 @@ background-color:#F5F5F5;
     </font>
    </property>
    <property name="text">
-    <string/>
+    <string>关闭</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">

@@ -692,16 +692,54 @@ void MainWindow::on_pushButton_4_clicked()
     QObject::connect(can2SingalSendTimer,SIGNAL(canSendSignal(VCI_CAN_OBJ)),&(CanManager::GetInstance()->can2),SLOT(sendSlot(VCI_CAN_OBJ)));
     std::vector<VCI_CAN_OBJ> vcCan;
     std::vector<int> msleeps;
+
+
     for(int i=0;i<ui->tableWidget_3->rowCount();i++)//构造数据
     {
-        for(int j=0;j<(ui->tableWidget_3->item(i,7)->text().toInt());j++)
+        for(int j=0;j<(ui->tableWidget_3->item(i,5)->text().toInt());j++)
         {
             VCI_CAN_OBJ obj;
             memset(&obj,0,sizeof(obj));
+
+            //帧类型
+            QString str_ide = ui->tableWidget_3->item(i,0)->text();
+
+            if(str_ide.compare("标准帧") == 0)
+            {
+                obj.ExternFlag = CAN_FRAM_STANDARD;
+            }
+            else
+            {
+                obj.ExternFlag = CAN_FRAM_EXTERN;
+            }
+
+            //帧格式
+            QString str_rtr = ui->tableWidget_3->item(i,1)->text();
+
+            if(str_rtr.compare("数据帧") == 0)
+            {
+                obj.RemoteFlag = CAN_DATA_INFO;
+            }
+            else
+            {
+                obj.RemoteFlag = CAN_DATA_REMOTE;
+            }
+
             //ID
-            obj.ID = ui->tableWidget_3->item(i,1)->text().toUInt(nullptr,Z_HEX);
+            obj.ID = ui->tableWidget_3->item(i,2)->text().toUInt(nullptr,Z_HEX);
+
+
+
+            //数据长度
+            obj.DataLen = ui->tableWidget_3->item(i,3)->text().remove(QRegExp("\\s")).size()/2;
+            //数据
+            QByteArray ba;
+            QString tmpStr = ui->tableWidget_3->item(i,3)->text();
+            RET_IF_NOT_EAQU(Mymethod::GetInstance()->getBytesFromQString(tmpStr,ba),RET_OK);
+            memcpy(obj.Data,ba.data(),obj.DataLen);
+
             //发送类型
-            if(SEND_SELF == ui->tableWidget_3->item(i,6)->text())
+            if(SEND_SELF == ui->tableWidget_3->item(i,5)->text())
             {
                 obj.SendType = CAN_SEND_SELF;
             }
@@ -709,19 +747,13 @@ void MainWindow::on_pushButton_4_clicked()
             {
                 obj.SendType = CAN_SEND_NORMAL;
             }
-            //数据类型
-            obj.RemoteFlag = CAN_DATA_INFO;
-            //是否扩展帧
-            obj.ExternFlag = CAN_FRAM_EXTERN;
-            //数据长度
-            obj.DataLen = ui->tableWidget_3->item(i,2)->text().remove(QRegExp("\\s")).size()/2;
-            //数据
-            QByteArray ba;
-            QString tmpStr = ui->tableWidget_3->item(i,2)->text();
-            RET_IF_NOT_EAQU(Mymethod::GetInstance()->getBytesFromQString(tmpStr,ba),RET_OK);
-            memcpy(obj.Data,ba.data(),obj.DataLen);
+
+
+            qDebug() << obj.ExternFlag << obj.RemoteFlag << obj.ID;
+
+            //发送
             vcCan.push_back(obj);
-            msleeps.push_back(ui->tableWidget_3->item(i,5)->text().toInt());
+            msleeps.push_back(ui->tableWidget_3->item(i,4)->text().toInt());
         }
     }
     can2SingalSendTimer->setSingalSendData(vcCan,msleeps);

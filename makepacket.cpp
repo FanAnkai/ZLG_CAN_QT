@@ -22,80 +22,15 @@ MakePacket::MakePacket(QWidget *parent) :
     testPacket = new TestPacket(this);
     infoPacket = new InfoPacket(this);
 
+    setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);    // 禁止最大化按钮
+    setFixedSize(450,250);
+
 }
 
 MakePacket::~MakePacket()
 {
     delete ui;
 }
-
-
-
-
-
-//void MakePacket::on_comboBox_currentIndexChanged(int index)
-//{
-//    switch (index)
-//    {
-//    case 0:
-//    {
-//        controlPacket->hide();
-//        stPacket->hide();
-//        testPacket->hide();
-//        infoPacket->hide();
-
-
-//        break;
-//    }
-//    case 1:
-//    {
-//        stPacket->hide();
-//        testPacket->hide();
-//        infoPacket->hide();
-//        this->setFixedHeight(controlPacket->size().height()+100);
-//        controlPacket->move(10,40);
-//        controlPacket->show();
-
-//        break;
-//    }
-//    case 2:
-//    {
-
-//        controlPacket->hide();
-//        stPacket->hide();
-//        testPacket->hide();
-//        this->setFixedHeight(stPacket->size().height()+100);
-//        stPacket->move(10,40);
-//        stPacket->show();
-//        break;
-//    }
-//    case 3:
-//    {
-
-//        controlPacket->hide();
-//        stPacket->hide();
-//        infoPacket->hide();
-//        this->setFixedHeight(testPacket->size().height()+100);
-//        testPacket->move(10,40);
-//        testPacket->show();
-//        break;
-//    }
-//    case 4:
-//    {
-
-//        controlPacket->hide();
-//        stPacket->hide();
-//        testPacket->hide();
-//        this->setFixedHeight(infoPacket->size().height()+100);
-//        infoPacket->move(10,40);
-//        infoPacket->show();
-//        break;
-//    }
-//    default:
-//        break;
-//    }
-//}
-
 
 
 void MakePacket::on_pushButton_clicked()
@@ -148,3 +83,8 @@ void MakePacket::on_pushButton_clicked()
 }
 
 
+
+void MakePacket::on_pushButton_2_clicked()
+{
+    this->hide();
+}
