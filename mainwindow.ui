@@ -17,7 +17,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>车体外观_嵌入式CAN陪测软件_V1.3</string>
+   <string>ZLG_CAN_TEST</string>
   </property>
   <property name="styleSheet">
    <string notr="true">/*QComboBox*/
